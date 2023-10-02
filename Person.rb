@@ -1,7 +1,7 @@
 require 'securerandom'
 
 class Person
-  def initialize(age, name = 'Unknown', parent_permission = true)
+  def initialize(age, name = 'Unknown', parent_permission: true)
     @id = SecureRandom.uuid
     @name = name
     @age = age
@@ -29,7 +29,7 @@ class Person
   end
 
   def can_use_services?
-    of_age? || @parent_permission 
+    of_age? || @parent_permission
   end
 
   private
