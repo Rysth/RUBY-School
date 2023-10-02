@@ -17,8 +17,6 @@
   - [Prerequisites](#prerequisites)
   - [Install](#install)
   - [Usage](#usage)
-  - [Run tests](#run-tests)
-  - [Deployment](#triangular_flag_on_post-deployment)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
@@ -26,9 +24,10 @@
 - [🙏 Acknowledgements](#acknowledgements)
 - [📝 License](#license)
 
-# 📖 RUBY Decode Morse <a name="about-project"></a>
+# 📖 RUBY School <a name="about-project"></a>
 
-**RUBY Decode Morse** ...
+**RUBY School** is a backend application, use to communicate Students, Teachers, Books, and other relevant components from a School Library system.
+Built with Ruby.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -43,7 +42,9 @@
 
 ### Key Features <a name="key-features"></a>
 
-- **Feature 1**
+- **Add new students or teachers.**
+- **Add new books.**
+- **Save records of who borrowed a given book and when.**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -60,8 +61,8 @@ In order to run this project you need:
 Clone this repository to your desired folder:
 
 ```
-git clone https://github.com/Rysth/RUBY-Decode-Morse.git
-cd RUBY-Decode-Morse
+git clone https://github.com/Rysth/RUBY-School.git
+cd RUBY-School
 code . (To open VS Code Editor)
 ```
 
@@ -70,6 +71,8 @@ Then, you will change everything you want!
 ### Install
 
 Install this project with:
+
+- Use the `build install` command within your folder using WSL.
 
 ### Usage
 
