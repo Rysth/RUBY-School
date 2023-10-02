@@ -1,6 +1,8 @@
+require 'securerandom'
+
 class Person
-  def initialize(id, age, name = 'Unknown', parent_permission = true)
-    @id = id
+  def initialize(age, name = 'Unknown', parent_permission = true)
+    @id = SecureRandom.uuid
     @name = name
     @age = age
     @parent_permission = parent_permission
