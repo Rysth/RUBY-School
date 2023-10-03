@@ -11,6 +11,7 @@ class Person < Nameable
     @name = name
     @age = age
     @parent_permission = parent_permission
+    @rentals = []
   end
 
   def can_use_services?
@@ -20,6 +21,11 @@ class Person < Nameable
   # Implement and Override Nameable correct_name method
   def correct_name
     @name
+  end
+
+  def add_rental(rental)
+    @rentals << rental
+    rental.assign_person(self)
   end
 
   private
