@@ -5,9 +5,9 @@ require_relative '../associations/classroom_class'
 classroom_a = Classroom.new('Class A')
 
 # Create some Students
-student1 = Student.new(16, classroom_a, 'Alice', parent_permission: true)
-student2 = Student.new(18, classroom_a, 'Bob', parent_permission: false)
-student3 = Student.new(17, classroom_a, 'Charlie', parent_permission: true)
+Student.new(16, classroom_a, 'Alice', parent_permission: true)
+Student.new(18, classroom_a, 'Bob', parent_permission: false)
+Student.new(17, classroom_a, 'Charlie', parent_permission: true)
 
 # Check the students in the classroom
 puts "Classroom #{classroom_a.label} has the following students:"
@@ -20,8 +20,8 @@ classroom_b = Classroom.new('Class B')
 classroom_c = Classroom.new('Class C')
 
 # Create additional students and associate them with different classrooms
-student4 = Student.new(15, classroom_b, 'David', parent_permission: true)
-student5 = Student.new(17, classroom_c, 'Eve', parent_permission: true)
+Student.new(15, classroom_b, 'David', parent_permission: true)
+Student.new(17, classroom_c, 'Eve', parent_permission: true)
 
 # Check the students in each classroom
 puts "Classroom #{classroom_b.label} has the following students:"
