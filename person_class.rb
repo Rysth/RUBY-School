@@ -27,6 +27,3 @@ class Person < Nameable
     @age >= 18
   end
 end
-
-person = Person.new(15)
-puts person.correct_name
