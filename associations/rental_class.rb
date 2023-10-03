@@ -9,16 +9,16 @@ class Rental
   end
 
   def add_book(book)
-    unless @book == book
-      @book = book
-      book.add_rental(self)
-    end
+    return if @book == book
+
+    @book = book
+    book.add_rental(self)
   end
 
   def assign_person(person)
-    unless @person == person
-      @person = person
-      person.add_rental(self)
-    end
+    return if @person == person
+
+    @person = person
+    person.add_rental(self)
   end
 end
