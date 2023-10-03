@@ -16,9 +16,17 @@ class Person < Nameable
     of_age? || @parent_permission
   end
 
+  # Implement and Override Nameable correct_name method
+  def correct_name
+    @name
+  end
+
   private
 
   def of_age?
     @age >= 18
   end
 end
+
+person = Person.new(15)
+puts person.correct_name
