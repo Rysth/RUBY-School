@@ -1,6 +1,7 @@
 require 'securerandom'
+require_relative 'nameable_class'
 
-class Person
+class Person < Nameable
   attr_accessor :name, :age
   attr_reader :id
 
