@@ -1,5 +1,5 @@
 class Nameable
   def correct_name
-    raise NotImplementedError.new "No implemented yet."
+    raise NotImplementedError, 'No implemented yet.'
   end
 end
