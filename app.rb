@@ -53,6 +53,12 @@ class App
         gets.chomp
       end
       when 7
+        clear_screen
+        puts "Thanks!"
+        puts "Made By RysthCraft"
+        puts "--------------------"
+        puts "LinkedIn: @john-palacios-rysthcraft"
+        puts "Github: @Rysth"
         break
       end
     end
@@ -197,7 +203,7 @@ class App
       end
       person_selected = @people[person_number-1]
       book_selected = @books[book_number-1]
-      puts "----------------------------------"
+      clear_screen
       puts "Rental --> Person: #{person_selected.name} Book: #{book_selected.title} [Press ENTER to continue]"
       rental = Rental.new(Date.today.strftime('%Y-%m-%d'))
       rental.add_book(book_selected)
@@ -214,21 +220,25 @@ class App
   #TODO 
   def list_rentals_by_person(id)
     clear_screen
+    rentals_found = false
+
+    puts "----------------------------------"
     @rentals.each do |rental|
       if rental.person.id == id
-        puts "Person: #{rental.person.name}"
-        puts "----------------------------------"
         @books.each do |book|
-          next if rental.book.title != book.title && rental.book.author != book.author
-          puts "Book: #{book.title}"
+          next if rental.book.id != book.id
+          puts "Person: #{rental.person.name} --> Book: #{book.title}"
+          rentals_found = true
         end
-        puts "----------------------------------"
-
-      else
-        puts "This PERSON doesn't have any rental. [Press ENTER to continue]"
-        gets.chomp
       end
     end 
+
+    if !rentals_found
+      puts "This PERSON doesn't have any rentals."
+    end
+    puts "----------------------------------"
+    puts "[Press ENTER to continue]"
+    gets.chomp
   end
 
   private
@@ -246,4 +256,5 @@ class App
     end
     choice
   end
+  
 end
