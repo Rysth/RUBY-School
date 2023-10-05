@@ -147,6 +147,13 @@ class App
       gets.chomp
     end
   end
+
+  def find_person(id)
+    @people.each do |person|
+      next if id != person.id
+      puts person
+    end 
+  end
 end
 
 app = App.new
