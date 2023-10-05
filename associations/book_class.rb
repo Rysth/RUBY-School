@@ -1,7 +1,11 @@
+require 'securerandom'
+
 class Book
   attr_accessor :title, :author
+  attr_reader :id
 
   def initialize(title, author)
+    @id = SecureRandom.hex(2)
     @title = title
     @author = author
     @rentals = []
