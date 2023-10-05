@@ -25,27 +25,34 @@ class App
       when 3 then create_person
       when 4 then create_book
       when 5 then create_rental
-      when 6
-        clear_screen
-        if @rentals.empty?
-          puts "There're no rentals yet. [Press ENTER to continue]"
-          gets.chomp
-        else
-          person_id = ''
-          while person_id.empty?
-            list_people
-            print 'Please, type the ID of the person: '
-            person_id = gets.chomp
-          end
-          list_rentals_by_person(person_id)
-        end
+      when 6 then list_rentals_by_person
       when 7
-        clear_screen
-        puts 'Thanks!'
-        puts 'Made By RysthCraft'
+        quit
         break
       end
     end
+  end
+
+  def list_rentals_by_person
+    clear_screen
+    if @rentals.empty?
+      puts "There're no rentals yet. [Press ENTER to continue]"
+      gets.chomp
+    else
+      person_id = ''
+      while person_id.empty?
+        list_people
+        print 'Please, type the ID of the person: '
+        person_id = gets.chomp
+      end
+      display_rentals_for_person(person_id)
+    end
+  end
+
+  def quit
+    clear_screen
+    puts 'Thanks!'
+    puts 'Made By RysthCraft'
   end
 
   def list_books
@@ -69,13 +76,26 @@ class App
       puts "There're no people yet. [Press ENTER to continue]"
       gets.chomp
     else
-      puts 'People:'
-      puts '----------------------------------'
-      @people.each_with_index do |person, idx|
-        puts "#{idx + 1}) ID: #{person.id}, Type: #{person.class}, Name: #{person.name}, Age: #{person.age}, Parent Permission: #{person.parent_permission}"
-      end
-      puts '----------------------------------'
+      display_people_list
     end
+  end
+
+  def display_people_list
+    puts 'People:'
+    puts '----------------------------------'
+    @people.each_with_index do |person, idx|
+      display_person_info(person, idx)
+    end
+    puts '----------------------------------'
+  end
+
+  def display_person_info(person, idx)
+    info = "#{idx + 1}) ID: #{person.id}, " \
+           "Type: #{person.class}, " \
+           "Name: #{person.name}, " \
+           "Age: #{person.age}, " \
+           "Parent Permission: #{person.parent_permission}"
+    puts info
   end
 
   def create_person
@@ -173,20 +193,20 @@ class App
 
   def create_rental
     return unless valid_rental?
-  
+
     person_selected = select_person
     book_selected = select_book
-  
+
     clear_screen
     puts "Rental --> Person: #{person_selected.name} Book: #{book_selected.title} [Press ENTER to continue]"
     rental = Rental.new(Date.today.strftime('%Y-%m-%d'))
     rental.add_book(book_selected)
     rental.assign_person(person_selected)
     @rentals << rental
-  
+
     gets.chomp
   end
-  
+
   def valid_rental?
     if @books.empty? || @people.empty?
       clear_screen
@@ -196,7 +216,7 @@ class App
     end
     true
   end
-  
+
   def select_person
     person_number = 0
     until person_number != 0 && person_number.positive? && person_number <= @people.size
@@ -208,7 +228,7 @@ class App
     end
     @people[person_number - 1]
   end
-  
+
   def select_book
     book_number = 0
     until book_number != 0 && book_number.positive? && book_number <= @books.size
@@ -220,7 +240,7 @@ class App
   end
 
   # TODO
-  def list_rentals_by_person(id)
+  def display_rentals_for_person(id)
     clear_screen
     rentals_found = false
 
