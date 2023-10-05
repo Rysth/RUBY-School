@@ -172,34 +172,51 @@ class App
   end
 
   def create_rental
-    if !@books.empty? && !@people.empty?
-      person_number = book_number = 0
-      until person_number != 0 && person_number.positive? && person_number <= @people.size
-        clear_screen
-        puts 'Welcome to the CREATE_RENTAL method.'
-        list_people
-        print 'Who are you? [Write the NUMBER] : '
-        person_number = gets.chomp.to_i
-      end
-      puts '----------------------------------'
-      until book_number != 0 && book_number.positive? && book_number <= @books.size
-        list_books
-        print 'What book do you want? [Write the NUMBER]: '
-        book_number = gets.chomp.to_i
-      end
-      person_selected = @people[person_number - 1]
-      book_selected = @books[book_number - 1]
-      clear_screen
-      puts "Rental --> Person: #{person_selected.name} Book: #{book_selected.title} [Press ENTER to continue]"
-      rental = Rental.new(Date.today.strftime('%Y-%m-%d'))
-      rental.add_book(book_selected)
-      rental.assign_person(person_selected)
-      @rentals << rental
-    else
+    return unless valid_rental?
+  
+    person_selected = select_person
+    book_selected = select_book
+  
+    clear_screen
+    puts "Rental --> Person: #{person_selected.name} Book: #{book_selected.title} [Press ENTER to continue]"
+    rental = Rental.new(Date.today.strftime('%Y-%m-%d'))
+    rental.add_book(book_selected)
+    rental.assign_person(person_selected)
+    @rentals << rental
+  
+    gets.chomp
+  end
+  
+  def valid_rental?
+    if @books.empty? || @people.empty?
       clear_screen
       puts 'Please, add one BOOK and one PERSON. [Press ENTER to continue]'
+      gets.chomp
+      return false
     end
-    gets.chomp
+    true
+  end
+  
+  def select_person
+    person_number = 0
+    until person_number != 0 && person_number.positive? && person_number <= @people.size
+      clear_screen
+      puts 'Welcome to the CREATE_RENTAL method.'
+      list_people
+      print 'Who are you? [Write the NUMBER] : '
+      person_number = gets.chomp.to_i
+    end
+    @people[person_number - 1]
+  end
+  
+  def select_book
+    book_number = 0
+    until book_number != 0 && book_number.positive? && book_number <= @books.size
+      list_books
+      print 'What book do you want? [Write the NUMBER]: '
+      book_number = gets.chomp.to_i
+    end
+    @books[book_number - 1]
   end
 
   # TODO
