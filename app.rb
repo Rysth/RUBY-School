@@ -78,13 +78,11 @@ class App
     end
   end
 
- 
-
   def create_person
     person_type = choose_person_type
     age = input_age
     name = input_name
-  
+
     case person_type
     when 1
       parent_acceptance = input_parent_acceptance
@@ -94,16 +92,16 @@ class App
       specialization = input_specialization
       @people << Teacher.new(age, specialization, name, true)
     end
-  
+
     clear_screen
     puts 'Person created successfully! [Press ENTER to continue]'
     gets.chomp
   end
-  
+
   # Helper methods for input validation
   def choose_person_type
     person_type = 0
-    until person_type == 1 || person_type == 2
+    until [1, 2].include?(person_type)
       clear_screen
       puts 'Welcome to the CREATE_PERSON method.'
       print 'Do you want to create a STUDENT (1) or a TEACHER (2)? [Input the number]: '
@@ -111,7 +109,7 @@ class App
     end
     person_type
   end
-  
+
   def input_age
     age = 0
     until (1..120).cover?(age)
@@ -121,7 +119,7 @@ class App
     end
     age
   end
-  
+
   def input_name
     name = ''
     until !name.empty? && name.match(LETTER_REGEX)
@@ -141,43 +139,36 @@ class App
     end
     parent_acceptance
   end
-  
+
   def input_specialization
     specialization = ''
     until !specialization.empty? && specialization.match(LETTER_REGEX)
       clear_screen
       print "What's your specialization?: "
       specialization = gets.chomp.capitalize.strip
-      puts 'Insert a valid SPECIALIZATION. [Press ENTER to continue]' unless specialization.match(LETTER_REGEX)
-      gets.chomp
     end
     specialization
   end
 
   def create_book
-    title = author = ''
-    until !title.empty? && title.match(LETTER_REGEX)
-      clear_screen
-      puts 'Welcome to the CREATE_BOOK method.'
-      print 'Title: '
-      title = gets.chomp.capitalize.strip
-      unless title.match(LETTER_REGEX)
-        puts 'Insert a valid TITLE. [Press ENTER to continue]'
-        gets.chomp
-      end
-    end
-    until !author.empty? && author.match(LETTER_REGEX)
-      clear_screen
-      print 'Author: '
-      author = gets.chomp.capitalize.strip
-      unless author.match(LETTER_REGEX)
-        puts 'Insert a valid AUTHOR. [Press ENTER to continue]'
-        gets.chomp
-      end
-    end
+    title = input_valid_string('Title')
+    author = input_valid_string('Author')
+
     @books << Book.new(title, author)
+
+    clear_screen
     puts 'Book created successfully! [Press ENTER to continue]'
     gets.chomp
+  end
+
+  def input_valid_string(prompt)
+    input = ''
+    until !input.empty? && input.match(LETTER_REGEX)
+      clear_screen
+      print "What's the #{prompt}: "
+      input = gets.chomp.strip.capitalize
+    end
+    input
   end
 
   def create_rental
