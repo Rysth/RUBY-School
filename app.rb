@@ -1,6 +1,8 @@
+require 'date'
 require_relative 'student_class'
 require_relative 'teacher_class'
 require_relative 'associations/book_class'
+require_relative 'associations/rental_class'
 
 class App
   LETTER_REGEX = /^[a-z ]+$/i
@@ -8,24 +10,81 @@ class App
   def initialize
     @books = []
     @people = []
-    @classrooms = []
+    @rentals = []
+  end
+
+  def run
+    clear_screen
+    loop do
+      puts "Welcome to the Application Menu:"
+      puts "1. List all books"
+      puts "2. List all people"
+      puts "3. Create a person"
+      puts "4. Create a book"
+      puts "5. Create a rental"
+      puts "6. List all rentals for a given person ID"
+      puts "7. Quit"
+  
+      choice = get_user_choice(1..7)
+  
+      case choice
+      when 1
+        list_books
+      when 2
+        list_people
+      when 3
+        create_person
+      when 4
+        create_book
+      when 5
+        create_rental
+      when 6
+      clear_screen
+      if !@rentals.empty?
+        person_id = ''
+        until !person_id.empty?
+          list_people
+          print "Please, type the ID of the person: "
+          person_id = gets.chomp
+        end
+        list_rentals_by_person(person_id)
+      else
+        puts "There're no rentals yet. [Press ENTER to continue]"
+        gets.chomp
+      end
+      when 7
+        break
+      end
+    end
   end
 
   def list_books
-    puts "Books:"
-    puts "----------------------------------"
-    @books.each_with_index do |book, idx|
-      puts "#{idx + 1}) Title: #{book.title}, Author: #{book.author}"
+    clear_screen
+    if !@books.empty?
+      puts "Books:"
       puts "----------------------------------"
+      @books.each_with_index do |book, idx|
+        puts "#{idx + 1}) Title: #{book.title}, Author: #{book.author}"
+      end
+      puts "----------------------------------"
+    else
+      puts "There're no books yet. [Press ENTER to continue]"
+      gets.chomp
     end
   end
 
   def list_people
-    puts "People:"
-    puts "----------------------------------"
-    @people.each_with_index do |person, idx|
-      puts "#{idx + 1}) Type: #{person.class}, Name: #{person.name}, Age: #{person.age}, Parent Permission: #{person.parent_permission}"
+    clear_screen
+    if !@people.empty?
+      puts "People:"
       puts "----------------------------------"
+      @people.each_with_index do |person, idx|
+        puts "#{idx + 1}) ID: #{person.id}, Type: #{person.class}, Name: #{person.name}, Age: #{person.age}, Parent Permission: #{person.parent_permission}"
+      end
+      puts "----------------------------------"
+    else
+      puts "There're no people yet. [Press ENTER to continue]"
+      gets.chomp
     end
   end
 
@@ -44,15 +103,16 @@ class App
     end
     until (1..119).cover?(age)
       clear_screen
-      print "Age: "
+      print "What's your age?: "
       age = gets.chomp.to_i
       if age <= 0
         puts "Insert a valid AGE. [Press ENTER to continue]"
+        gets.chomp
       end
     end
     until !name.empty? && name.match(LETTER_REGEX)
       clear_screen
-      print "Name: "
+      print "What's your name?: "
       name = gets.chomp.capitalize.strip
       if !name.match(LETTER_REGEX)
         puts "Insert a valid NAME. [Press ENTER to continue]"
@@ -77,7 +137,7 @@ class App
         specialization = ''
         until !specialization.empty? && specialization.match(LETTER_REGEX)
           clear_screen
-          print "Specialization: "
+          print "What's your specialization?: "
           specialization = gets.chomp.capitalize.strip
           if !specialization.match(LETTER_REGEX)
             puts "Insert a valid SPECIALIZATION. [Press ENTER to continue]"
@@ -137,27 +197,37 @@ class App
       end
       person_selected = @people[person_number-1]
       book_selected = @books[book_number-1]
-      puts "Rental created successfully! [Press ENTER to continue]"
       puts "----------------------------------"
-      puts "Person: #{person_selected.name} Book: #{book_selected.title}"
+      puts "Rental --> Person: #{person_selected.name} Book: #{book_selected.title} [Press ENTER to continue]"
+      rental = Rental.new(Date.today.strftime('%Y-%m-%d'))
+      rental.add_book(book_selected)
+      rental.assign_person(person_selected)
+      @rentals << rental
       gets.chomp
     else
+      clear_screen
       puts "Please, add one BOOK and one PERSON. [Press ENTER to continue]"
       gets.chomp
     end
   end
 
-  def find_person(id)
-    id -= 1
-    @people.each_with_index do |person, idx|
-      next if id != idx
-      puts "Type: #{person.class} Name: #{person.name}"
-    end 
-  end
+  #TODO 
+  def list_rentals_by_person(id)
+    clear_screen
+    @rentals.each do |rental|
+      if rental.person.id == id
+        puts "Person: #{rental.person.name}"
+        puts "----------------------------------"
+        @books.each do |book|
+          next if rental.book.title != book.title && rental.book.author != book.author
+          puts "Book: #{book.title}"
+        end
+        puts "----------------------------------"
 
-  def list_person_ids
-    @people.each_with_index do |person, idx|
-      puts "ID: #{idx + 1} Type: #{person.class} Name: #{person.name}"
+      else
+        puts "This PERSON doesn't have any rental. [Press ENTER to continue]"
+        gets.chomp
+      end
     end 
   end
 
@@ -165,5 +235,15 @@ class App
 
   def clear_screen
     system("clear") || system("cls")
+  end
+
+  def get_user_choice(range)
+    choice = nil
+    until range.include?(choice)
+      print "Enter your choice: "
+      choice = gets.chomp.to_i
+      puts "Invalid choice. Please enter a valid option." unless range.include?(choice)
+    end
+    choice
   end
 end
