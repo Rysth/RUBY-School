@@ -13,10 +13,10 @@ class App
 
   def list_books
     puts "Books:"
-    puts "-----------------------"
+    puts "----------------------------------"
     @books.each_with_index do |book, idx|
       puts "#{idx + 1}) Title: #{book.title}, Author: #{book.author}"
-      puts "-----------------------"
+      puts "----------------------------------"
     end
   end
 
@@ -91,9 +91,7 @@ class App
     gets.chomp
   end
 
-  def clear_screen
-    system("clear") || system("cls")
-  end
+ 
 
   def create_book
     title = author = ''
@@ -128,12 +126,13 @@ class App
         clear_screen
         puts "Welcome to the CREATE_RENTAL method."
         list_people
-        print "Who are you?: [Write the NUMBER] "
+        print "Who are you? [Write the NUMBER] : "
         person_number = gets.chomp.to_i
       end
+      puts "----------------------------------"
       until book_number != 0 && book_number > 0
         list_books
-        print "What book do you want?: [Write the NUMBER] "
+        print "What book do you want? [Write the NUMBER]: "
         book_number = gets.chomp.to_i
       end
       person_selected = @people[person_number-1]
@@ -149,14 +148,22 @@ class App
   end
 
   def find_person(id)
-    @people.each do |person|
-      next if id != person.id
-      puts person
+    id -= 1
+    @people.each_with_index do |person, idx|
+      next if id != idx
+      puts "Type: #{person.class} Name: #{person.name}"
     end 
   end
-end
 
-app = App.new
-app.create_person
-app.create_book
-app.create_rental
+  def list_person_ids
+    @people.each_with_index do |person, idx|
+      puts "ID: #{idx + 1} Type: #{person.class} Name: #{person.name}"
+    end 
+  end
+
+  private
+
+  def clear_screen
+    system("clear") || system("cls")
+  end
+end
