@@ -9,14 +9,20 @@ class App
   end
 
   def list_books
+    puts "Books:"
+    puts "-----------------------"
     @books.each do |book|
-      puts "Book[Title: #{book.title}, Author: #{book.author}]"
+      puts "Title: #{book.title}, Author: #{book.author}"
+      puts "-----------------------"
     end
   end
 
   def list_people
+    puts "People:"
+    puts "----------------------------------"
     @people.each do |person|
-      puts "Person [Type: #{person.class}, Name: #{person.name}, Age: #{person.age}, ParentPermission: #{person.parent_permission}]"
+      puts "Type: #{person.class}, Name: #{person.name}, Age: #{person.age}, Parent Permission: #{person.parent_permission}"
+      puts "----------------------------------"
     end
   end
 
