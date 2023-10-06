@@ -1,4 +1,5 @@
 require 'date'
+require 'pry'
 require_relative 'student_class'
 require_relative 'teacher_class'
 require_relative 'associations/book_class'
@@ -123,6 +124,7 @@ class App
     person_type = 0
     until [3, 4].include?(person_type)
       clear_screen
+      binding.pry
       puts 'Welcome to the CREATE_PERSON method.'
       print 'Do you want to create a STUDENT (1) or a TEACHER (2)? [Input the number]: '
       person_type = gets.chomp.to_i
