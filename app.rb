@@ -121,7 +121,7 @@ class App
   # Helper methods for input validation
   def choose_person_type
     person_type = 0
-    until [1, 2].include?(person_type)
+    until [3, 4].include?(person_type)
       clear_screen
       puts 'Welcome to the CREATE_PERSON method.'
       print 'Do you want to create a STUDENT (1) or a TEACHER (2)? [Input the number]: '
