@@ -9,7 +9,7 @@ require_relative 'book_folder/book_class'
 require_relative '../associations/rental_class'
 
 class App
-  LETTER_REGEX = /^[a-z ]+$/i.freeze
+  attr_reader :books, :people, :rentals
 
   def initialize
     @books = []
@@ -27,7 +27,7 @@ class App
       puts "There're no books yet. [Press ENTER to continue]"
       gets.chomp
     else
-     List.display_book_list(@books)
+      List.display_book_list(@books)
     end
   end
 
@@ -62,24 +62,14 @@ class App
   end
 
   def create_book
-    title = input_valid_string('Title')
-    author = input_valid_string('Author')
+    title = Input.input_valid_string('Title')
+    author = Input.input_valid_string('Author')
 
     @books << Book.new(title, author)
 
     Commands.clear_screen
     puts 'Book created successfully! [Press ENTER to continue]'
     gets.chomp
-  end
-
-  def input_valid_string(prompt)
-    input = ''
-    until !input.empty? && input.match(LETTER_REGEX)
-      Commands.clear_screen
-      print "What's the #{prompt}: "
-      input = gets.chomp.strip.capitalize
-    end
-    input
   end
 
   def create_rental
@@ -142,30 +132,7 @@ class App
         print 'Please, type the ID of the person: '
         person_id = gets.chomp
       end
-      display_rentals_for_person(person_id)
+      List.display_rentals_for_person(person_id, self)
     end
   end
-
-  def display_rentals_for_person(id)
-    Commands.clear_screen
-    rentals_found = false
-
-    puts '----------------------------------'
-    @rentals.each do |rental|
-      next unless rental.person.id == id
-
-      @books.each do |book|
-        next if rental.book.id != book.id
-
-        puts "Person: #{rental.person.name} --> Book: #{book.title}"
-        rentals_found = true
-      end
-    end
-
-    puts "This PERSON doesn't have any rentals." unless rentals_found
-    puts '----------------------------------'
-    puts '[Press ENTER to continue]'
-    gets.chomp
-  end
- 
 end
