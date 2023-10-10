@@ -1,4 +1,5 @@
 require 'date'
+require_relative '../modules/menu_module'
 require_relative 'person_folder/student_class'
 require_relative 'person_folder/teacher_class'
 require_relative 'book_folder/book_class'
@@ -14,26 +15,8 @@ class App
   end
 
   def run
-    clear_screen
-    loop do
-      display_menu_options
-      choice = get_user_choice(1..7)
-
-      case choice
-      when 1 then list_books
-      when 2 then list_people
-      when 3 then create_person
-      when 4 then create_book
-      when 5 then create_rental
-      when 6 then list_rentals_by_person
-      when 7
-        quit
-        break
-      end
-    end
+    Menu.main(self)
   end
-
-  private
 
   def list_rentals_by_person
     clear_screen
