@@ -1,6 +1,8 @@
+require_relative 'commands_module'
+
 module Menu
   def self.main(app)
-    app.clear_screen
+    Commands.clear_screen
     loop do
       display_menu_options
       choice = get_user_choice(1..7)
@@ -13,7 +15,7 @@ module Menu
       when 5 then app.create_rental
       when 6 then app.list_rentals_by_person
       when 7
-        app.quit
+        quit
         break
       end
     end
@@ -38,5 +40,11 @@ module Menu
       puts 'Invalid choice. Please enter a valid option.' unless range.include?(choice)
     end
     choice
+  end
+
+  def self.quit
+    Commands.clear_screen
+    puts 'Thanks!'
+    puts 'Made By RysthCraft'
   end
 end

@@ -1,4 +1,6 @@
 require 'date'
+require_relative '../modules/commands_module'
+require_relative '../modules/list_module'
 require_relative '../modules/menu_module'
 require_relative 'person_folder/student_class'
 require_relative 'person_folder/teacher_class'
@@ -19,7 +21,7 @@ class App
   end
 
   def list_rentals_by_person
-    clear_screen
+    Commands.clear_screen
     if @rentals.empty?
       puts "There're no rentals yet. [Press ENTER to continue]"
       gets.chomp
@@ -34,53 +36,24 @@ class App
     end
   end
 
-  def quit
-    clear_screen
-    puts 'Thanks!'
-    puts 'Made By RysthCraft'
-  end
-
   def list_books
-    clear_screen
+    Commands.clear_screen
     if @books.empty?
       puts "There're no books yet. [Press ENTER to continue]"
       gets.chomp
     else
-      puts 'Books:'
-      puts '----------------------------------'
-      @books.each_with_index do |book, idx|
-        puts "#{idx + 1}) Title: #{book.title}, Author: #{book.author}"
-      end
-      puts '----------------------------------'
+     List.display_book_list(@books)
     end
   end
 
   def list_people
-    clear_screen
+    Commands.clear_screen
     if @people.empty?
       puts "There're no people yet. [Press ENTER to continue]"
       gets.chomp
     else
-      display_people_list
+      List.display_people_list(@people)
     end
-  end
-
-  def display_people_list
-    puts 'People:'
-    puts '----------------------------------'
-    @people.each_with_index do |person, idx|
-      display_person_info(person, idx)
-    end
-    puts '----------------------------------'
-  end
-
-  def display_person_info(person, idx)
-    info = "#{idx + 1}) ID: #{person.id}, " \
-           "Type: #{person.class}, " \
-           "Name: #{person.name}, " \
-           "Age: #{person.age}, " \
-           "Parent Permission: #{person.parent_permission}"
-    puts info
   end
 
   def create_person
@@ -98,7 +71,7 @@ class App
       @people << Teacher.new(age, specialization, name, true)
     end
 
-    clear_screen
+    Commands.clear_screen
     puts 'Person created successfully! [Press ENTER to continue]'
     gets.chomp
   end
@@ -107,7 +80,7 @@ class App
   def choose_person_type
     person_type = 0
     until [1, 2].include?(person_type)
-      clear_screen
+      Commands.clear_screen
       puts 'Welcome to the CREATE_PERSON method.'
       print 'Do you want to create a STUDENT (1) or a TEACHER (2)? [Input the number]: '
       person_type = gets.chomp.to_i
@@ -118,7 +91,7 @@ class App
   def input_age
     age = 0
     until (1..120).cover?(age)
-      clear_screen
+      Commands.clear_screen
       print "What's your age?: "
       age = gets.chomp.to_i
     end
@@ -128,7 +101,7 @@ class App
   def input_name
     name = ''
     until !name.empty? && name.match(LETTER_REGEX)
-      clear_screen
+      Commands.clear_screen
       print "What's your name?: "
       name = gets.chomp.capitalize.strip
     end
@@ -138,7 +111,7 @@ class App
   def input_parent_acceptance
     parent_acceptance = ''
     until %w[Y N].include?(parent_acceptance)
-      clear_screen
+      Commands.clear_screen
       print 'Has parent permission? [Y/N]: '
       parent_acceptance = gets.chomp.to_s.capitalize.strip
     end
@@ -148,7 +121,7 @@ class App
   def input_specialization
     specialization = ''
     until !specialization.empty? && specialization.match(LETTER_REGEX)
-      clear_screen
+      Commands.clear_screen
       print "What's your specialization?: "
       specialization = gets.chomp.capitalize.strip
     end
@@ -161,7 +134,7 @@ class App
 
     @books << Book.new(title, author)
 
-    clear_screen
+    Commands.clear_screen
     puts 'Book created successfully! [Press ENTER to continue]'
     gets.chomp
   end
@@ -169,7 +142,7 @@ class App
   def input_valid_string(prompt)
     input = ''
     until !input.empty? && input.match(LETTER_REGEX)
-      clear_screen
+      Commands.clear_screen
       print "What's the #{prompt}: "
       input = gets.chomp.strip.capitalize
     end
@@ -182,7 +155,7 @@ class App
     person_selected = select_person
     book_selected = select_book
 
-    clear_screen
+    Commands.clear_screen
     puts "Rental --> Person: #{person_selected.name} Book: #{book_selected.title} [Press ENTER to continue]"
     rental = Rental.new(Date.today.strftime('%Y-%m-%d'))
     rental.add_book(book_selected)
@@ -194,7 +167,7 @@ class App
 
   def valid_rental?
     if @books.empty? || @people.empty?
-      clear_screen
+      Commands.clear_screen
       puts 'Please, add one BOOK and one PERSON. [Press ENTER to continue]'
       gets.chomp
       return false
@@ -205,7 +178,7 @@ class App
   def select_person
     person_number = 0
     until person_number != 0 && person_number.positive? && person_number <= @people.size
-      clear_screen
+      Commands.clear_screen
       puts 'Welcome to the CREATE_RENTAL method.'
       list_people
       print 'Who are you? [Write the NUMBER] : '
@@ -225,7 +198,7 @@ class App
   end
 
   def display_rentals_for_person(id)
-    clear_screen
+    Commands.clear_screen
     rentals_found = false
 
     puts '----------------------------------'
@@ -245,8 +218,5 @@ class App
     puts '[Press ENTER to continue]'
     gets.chomp
   end
-
-  def clear_screen
-    system('clear') || system('cls')
-  end
+ 
 end
