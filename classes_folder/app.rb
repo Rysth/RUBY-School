@@ -1,7 +1,7 @@
 require 'date'
-require_relative 'person/student_class'
-require_relative 'person/teacher_class'
-require_relative 'book/book_class'
+require_relative 'person_folder/student_class'
+require_relative 'person_folder/teacher_class'
+require_relative 'book_folder/book_class'
 require_relative '../associations/rental_class'
 
 class App
