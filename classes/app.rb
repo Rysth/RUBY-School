@@ -1,8 +1,8 @@
 require 'date'
-require_relative 'student_class'
-require_relative 'teacher_class'
-require_relative 'associations/book_class'
-require_relative 'associations/rental_class'
+require_relative 'person/student_class'
+require_relative 'person/teacher_class'
+require_relative 'book/book_class'
+require_relative '../associations/rental_class'
 
 class App
   LETTER_REGEX = /^[a-z ]+$/i.freeze
