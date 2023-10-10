@@ -27,7 +27,7 @@
 
 # 📖 RUBY School <a name="about-project"></a>
 
-**RUBY School** is a backend application, use to communicate Students, Teachers, Books, and other relevant components from a School Library system. Built with Ruby.
+**RUBY School** is a backend application, used to communicate with Students, Teachers, Books, and other relevant components from a School Library system. Built with Ruby.
 
 ## 🛠 Built With <a name="built-with"></a>
 
