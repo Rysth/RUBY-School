@@ -21,22 +21,6 @@ class App
     Menu.main(self)
   end
 
-  def list_rentals_by_person
-    Commands.clear_screen
-    if @rentals.empty?
-      puts "There're no rentals yet. [Press ENTER to continue]"
-      gets.chomp
-    else
-      person_id = ''
-      while person_id.empty?
-        list_people
-        print 'Please, type the ID of the person: '
-        person_id = gets.chomp
-      end
-      display_rentals_for_person(person_id)
-    end
-  end
-
   def list_books
     Commands.clear_screen
     if @books.empty?
@@ -144,6 +128,22 @@ class App
       book_number = gets.chomp.to_i
     end
     @books[book_number - 1]
+  end
+
+  def list_rentals_by_person
+    Commands.clear_screen
+    if @rentals.empty?
+      puts "There're no rentals yet. [Press ENTER to continue]"
+      gets.chomp
+    else
+      person_id = ''
+      while person_id.empty?
+        list_people
+        print 'Please, type the ID of the person: '
+        person_id = gets.chomp
+      end
+      display_rentals_for_person(person_id)
+    end
   end
 
   def display_rentals_for_person(id)
