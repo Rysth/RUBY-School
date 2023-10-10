@@ -1,4 +1,4 @@
-## Copyright 2023, JOHN PALACIOS
+## Copyright 2023, JOHN PALACIOS & HAJNALKA OLTYAN
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this **RUBY-School** and associated
 documentation files, to deal in the **RUBY-School** without restriction, including without limitation the rights to

@@ -1,4 +1,4 @@
-require_relative '../nameable_class'
+require_relative '../classes/nameable_class'
 
 class Decorator < Nameable
   def initialize(nameable)

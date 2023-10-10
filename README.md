@@ -3,31 +3,31 @@
 <div align="center">
   <img src="https://rysthcraft.netlify.app/img/LOGO-ONLY.svg" alt="logo" width="140"  height="auto" />
   <br/>
-  <h3><b>John Palacios - RysthCraft</b></h3>
+  <h3><b>John Palacios & Hajnalka Oltyan</b></h3>
 </div>
 
 # 📗 Table of Contents
 
-- [📖 About the Project](#about-project)
-  - [🛠 Built With](#built-with)
-    - [Tech Stack](#tech-stack)
-    - [Key Features](#key-features)
-- [💻 Getting Started](#getting-started)
-  - [Setup](#setup)
-  - [Prerequisites](#prerequisites)
-  - [Install](#install)
-  - [Usage](#usage)
-- [👥 Authors](#authors)
-- [🔭 Future Features](#future-features)
-- [🤝 Contributing](#contributing)
-- [⭐️ Show your support](#support)
-- [🙏 Acknowledgements](#acknowledgements)
-- [📝 License](#license)
+- [📗 Table of Contents](#-table-of-contents)
+- [📖 RUBY School ](#-ruby-school-)
+  - [🛠 Built With ](#-built-with-)
+    - [Tech Stack ](#tech-stack-)
+    - [Key Features ](#key-features-)
+  - [💻 Getting Started ](#-getting-started-)
+    - [Prerequisites](#prerequisites)
+    - [Setup](#setup)
+    - [Install](#install)
+    - [Usage](#usage)
+  - [👥 Authors ](#-authors-)
+  - [🔭 Future Features ](#-future-features-)
+  - [🤝 Contributing ](#-contributing-)
+  - [⭐️ Show your support ](#️-show-your-support-)
+  - [🙏 Acknowledgments ](#-acknowledgments-)
+  - [📝 License ](#-license-)
 
 # 📖 RUBY School <a name="about-project"></a>
 
-**RUBY School** is a backend application, use to communicate Students, Teachers, Books, and other relevant components from a School Library system.
-Built with Ruby.
+**RUBY School** is a backend application, use to communicate Students, Teachers, Books, and other relevant components from a School Library system. Built with Ruby.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -86,6 +86,11 @@ To run the project, execute the following steps:
 
 - GitHub: [@rysthcraft](https://github.com/Rysth)
 - Linkedin: [@johnpalacios](https://www.linkedin.com/in/john-palacios-rysthcraft/)
+
+👤 **Hajnalka Oltyan**
+
+- GitHub: [@hajnaloltyan](https://github.com/hajnaloltyan)
+- LinkedIn: [Hajnal Oltyan](https://www.linkedin.com/in/hajnalka-oltyan/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
