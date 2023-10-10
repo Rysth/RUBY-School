@@ -25,4 +25,26 @@ module List
     end
     puts '----------------------------------'
   end
+
+  def self.display_rentals_for_person(id, app)
+    Commands.clear_screen
+    rentals_found = false
+
+    puts '----------------------------------'
+    app.rentals.each do |rental|
+      next unless rental.person.id == id
+
+      app.books.each do |book|
+        next if rental.book.id != book.id
+
+        puts "Person: #{rental.person.name} --> Book: #{book.title}"
+        rentals_found = true
+      end
+    end
+
+    puts "This PERSON doesn't have any rentals." unless rentals_found
+    puts '----------------------------------'
+    puts '[Press ENTER to continue]'
+    gets.chomp
+  end
 end
