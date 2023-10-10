@@ -51,4 +51,14 @@ module Input
     end
     specialization
   end
+
+  def self.input_valid_string(prompt)
+    input = ''
+    until !input.empty? && input.match(LETTER_REGEX)
+      Commands.clear_screen
+      print "What's the #{prompt}: "
+      input = gets.chomp.strip.capitalize
+    end
+    input
+  end
 end
