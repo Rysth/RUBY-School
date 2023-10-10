@@ -33,6 +33,8 @@ class App
     end
   end
 
+  private
+
   def list_rentals_by_person
     clear_screen
     if @rentals.empty?
@@ -239,7 +241,6 @@ class App
     @books[book_number - 1]
   end
 
-  # TODO
   def display_rentals_for_person(id)
     clear_screen
     rentals_found = false
@@ -261,8 +262,6 @@ class App
     puts '[Press ENTER to continue]'
     gets.chomp
   end
-
-  private
 
   def display_menu_options
     puts 'Welcome to the Application Menu:'

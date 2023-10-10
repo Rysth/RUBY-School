@@ -3,7 +3,7 @@
 <div align="center">
   <img src="https://rysthcraft.netlify.app/img/LOGO-ONLY.svg" alt="logo" width="140"  height="auto" />
   <br/>
-  <h3><b>John Palacios - RysthCraft</b></h3>
+  <h3><b>John Palacios & Hajnalka Oltyan</b></h3>
 </div>
 
 # 📗 Table of Contents
