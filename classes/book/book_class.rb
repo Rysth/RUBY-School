@@ -4,7 +4,7 @@ class Book
   attr_accessor :title, :author
   attr_reader :id
 
-  def initialize(id = nil, title, author)
+  def initialize(id, title, author)
     @id = id.nil? ? SecureRandom.hex(2) : id
     @title = title
     @author = author

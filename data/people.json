@@ -14,5 +14,13 @@
     "Age": 23,
     "Classroom": "Green",
     "Parent_Permission": false
+  },
+  {
+    "ID": "4af6",
+    "Type": "Teacher",
+    "Name": "Microverse",
+    "Age": 100,
+    "Specialization": "Bootcamp",
+    "Parent_Permission": true
   }
 ]

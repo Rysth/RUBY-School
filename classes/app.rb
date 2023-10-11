@@ -56,10 +56,10 @@ class App
     when 1
       parent_acceptance = Input.input_parent_acceptance
       permission = parent_acceptance == 'Y'
-      new_person = Student.new(age, 'Green', name, permission)
+      new_person = Student.new(nil, age, 'Green', name, permission)
     when 2
       specialization = Input.input_specialization
-      new_person = Teacher.new(age, specialization, name, true)
+      new_person = Teacher.new(nil, age, specialization, name, true)
     end
 
     @people << new_person
@@ -75,7 +75,7 @@ class App
     title = Input.input_valid_string('Title')
     author = Input.input_valid_string('Author')
 
-    new_book = Book.new(title, author)
+    new_book = Book.new(nil, title, author)
     @books << new_book
 
     Manager.write_file('books.json', @books)

@@ -26,8 +26,8 @@ module Manager
 
     app.rentals = load('rentals').map do |rental_data|
       Rental.new(rental_data['Date'],
-      app.books.find { |book| book.id == rental_data['Book']['id'] },
-      app.people.find { |person| person.id == rental_data['Person']['id'] })
+                 app.books.find { |book| book.id == rental_data['Book']['id'] },
+                 app.people.find { |person| person.id == rental_data['Person']['id'] })
     end
   end
 
