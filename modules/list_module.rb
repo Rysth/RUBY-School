@@ -9,11 +9,21 @@ module List
   end
 
   def self.display_person_info(person, idx)
-    info = "#{idx + 1}) ID: #{person.id}, " \
-           "Type: #{person.class}, " \
-           "Name: #{person.name}, " \
-           "Age: #{person.age}, " \
-           "Parent Permission: #{person.parent_permission}"
+    info = if person.class == Student
+             "#{idx + 1}) ID: #{person.id}, " \
+               "Type: #{person.class}, " \
+               "Name: #{person.name}, " \
+               "Age: #{person.age}, " \
+               "Classroom: Green, " \
+               "Parent Permission: #{person.parent_permission}"
+           else
+             "#{idx + 1}) ID: #{person.id}, " \
+               "Type: #{person.class}, " \
+               "Name: #{person.name}, " \
+               "Age: #{person.age}, " \
+               "Specialization: #{person.specialization}, " \
+               "Parent Permission: #{person.parent_permission}"
+           end
     puts info
   end
 
