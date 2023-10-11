@@ -1,10 +1,3 @@
 [
-  {
-    "Title": "Ruby on Rails",
-    "Author": "John Palacios"
-  },
-  {
-    "Title": "Ruby on Rails",
-    "Author": "John Palacios"
-  }
+  "#<Book:0x00007ff51ec852d8>"
 ]

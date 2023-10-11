@@ -15,4 +15,8 @@ class Book
     @rentals << rental
     rental.add_book(self)
   end
+
+  def to_json
+    { title: @title, author: @author }
+  end
 end

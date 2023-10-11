@@ -1,4 +1,6 @@
+require 'json'
 require 'date'
+require_relative '../modules/manager_module'
 require_relative '../modules/input_module'
 require_relative '../modules/commands_module'
 require_relative '../modules/list_module'
@@ -9,7 +11,7 @@ require_relative 'book_folder/book_class'
 require_relative '../associations/rental_class'
 
 class App
-  attr_reader :books, :people, :rentals
+  attr_accessor :books, :people, :rentals
 
   def initialize
     @books = []
@@ -18,6 +20,7 @@ class App
   end
 
   def run
+    Manager.load_app(self)
     Menu.main(self)
   end
 
@@ -65,7 +68,13 @@ class App
     title = Input.input_valid_string('Title')
     author = Input.input_valid_string('Author')
 
-    @books << Book.new(title, author)
+    new_book = Book.new(title, author)
+    @books << new_book
+
+    books_data = File.new('./data/books.json', 'w+') 
+    book_json_array = @books.map { |book| book.to_json }
+    books_data.syswrite(JSON.pretty_generate(book_json_array))
+    books_data.close
 
     Commands.clear_screen
     puts 'Book created successfully! [Press ENTER to continue]'
