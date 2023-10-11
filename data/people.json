@@ -1,0 +1,23 @@
+[
+  {
+    "Type": "Teacher",
+    "Name": "John Doe",
+    "Age": 30,
+    "Specialization": "History",
+    "Parent Permission": true
+  },
+  {
+    "Type": "Student",
+    "Name": "Tess Smith",
+    "Age": 13,
+    "Classroom": "Green",
+    "Parent Permission": true
+  },
+  {
+    "Type": "Student",
+    "Name": "Kerry Ross",
+    "Age": 14,
+    "Classroom": "Green",
+    "Parent Permission": false
+  }
+]
