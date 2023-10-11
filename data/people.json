@@ -30,5 +30,13 @@
     "Age": 50,
     "Classroom": "Green",
     "Parent_Permission": false
+  },
+  {
+    "ID": "1e50",
+    "Type": "Teacher",
+    "Name": "Jean",
+    "Age": 30,
+    "Specialization": "Doctor",
+    "Parent_Permission": true
   }
 ]

@@ -6,15 +6,26 @@
       "name": "John Palacios"
     },
     "Book": {
-      "id": "06fe",
-      "title": "Ruby"
+      "id": "66dc",
+      "title": "Reactjs"
     }
   },
   {
     "Date": "2023-10-11",
     "Person": {
-      "id": "a877",
-      "name": "John Palacios"
+      "id": "1e50",
+      "name": "Jean"
+    },
+    "Book": {
+      "id": "66dc",
+      "title": "Reactjs"
+    }
+  },
+  {
+    "Date": "2023-10-11",
+    "Person": {
+      "id": "205d",
+      "name": "Hayni Oltyan"
     },
     "Book": {
       "id": "66dc",

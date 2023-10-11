@@ -12,4 +12,11 @@ module Manager
     end
     loaded_data
   end
+
+  def self.write_file(filename, collection)
+    file = File.new("./data/#{filename}", 'w+') 
+    json_array = collection.map { |item| item.to_json }
+    file.syswrite(JSON.pretty_generate(json_array))
+    file.close
+  end
 end

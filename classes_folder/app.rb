@@ -21,13 +21,34 @@ class App
   end
 
   def run
-    Manager.load  (self)
+    charge_data
     Menu.main(self)
+  end
+
+  def charge_data
+    @books = Manager.load('books').map { |book_data| Book.new(book_data['ID'], book_data['Title'], book_data['Author']) }
+   
+    @people = Manager.load('people').map do |people_data|
+      if people_data['Type'] == 'Student'
+        Student.new(people_data['ID'], people_data['Age'], people_data['Classroom'], people_data['Name'],
+                    people_data['Parent_Permission'])
+      else
+        Teacher.new(people_data['ID'], people_data['Age'], people_data['Specialization'], people_data['Name'], people_data['Parent_Permission'])
+      end
+    end
+
+    if !@books.empty? && !@people.empty?
+      @rentals = Manager.load('rentals').map do |rental_data|
+        Rental.new(rental_data['Date'], 
+        @books.find {|book| book.id == rental_data['Book']['id']},
+        @people.find {|person| person.id == rental_data['Person']['id']}
+      )
+      end
+    end
   end
 
   def list_books
     Commands.clear_screen
-    @books = Manager.load('books').map { |book_data| Book.new(book_data['ID'], book_data['Title'], book_data['Author']) }
 
     if @books.empty?
       puts "There're no books yet. [Press ENTER to continue]"
@@ -39,15 +60,6 @@ class App
 
   def list_people
     Commands.clear_screen
-
-    @people = Manager.load('people').map do |people_data|
-      if people_data['Type'] == 'Student'
-        Student.new(people_data['ID'], people_data['Age'], people_data['Classroom'], people_data['Name'],
-                    people_data['Parent_Permission'])
-      else
-        Teacher.new(people_data['ID'], people_data['Age'], people_data['Specialization'], people_data['Name'], people_data['Parent_Permission'])
-      end
-    end
 
     if @people.empty?
       puts "There're no people yet. [Press ENTER to continue]"
@@ -75,10 +87,7 @@ class App
 
     @people << new_person
 
-    people_file = File.new('./data/people.json', 'w+') 
-    people_json_array = @people.map { |person| person.to_json }
-    people_file.syswrite(JSON.pretty_generate(people_json_array))
-    people_file.close
+    Manager.write_file('people.json', @people)
 
     Commands.clear_screen
     puts 'Person created successfully! [Press ENTER to continue]'
@@ -158,12 +167,7 @@ class App
   def list_rentals_by_person
     Commands.clear_screen
 
-    @rentals = Manager.load('rentals').map do |rental_data|
-        Rental.new(rental_data['Date'], 
-        @books.find {|book| book.id == rental_data['Book']['id']},
-        @people.find {|person| person.id == rental_data['Person']['id']}
-      )
-    end
+
 
     if @rentals.empty?
       puts "There're no rentals yet. [Press ENTER to continue]"
