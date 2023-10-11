@@ -3,17 +3,14 @@ require 'json'
 module Manager
   DATA_FOLDER = './data'
 
-  def self.load
-    file_path = File.join(DATA_FOLDER, 'books.json')
-
+  def self.load(data)
+    file_path = File.join(DATA_FOLDER, "#{data}.json")
     if File.exist?(file_path)
-      json_data = File.read(file_path)
-      books = JSON.parse(json_data)
-      books.each { |book| puts book }
+      loaded_data = JSON.parse(File.read(file_path))
     else
-      puts "The file #{file_path} does not exist."
+      puts "The file #{file_path} doesn't exist."
+      loaded_data = []
     end
+    loaded_data
   end
 end
-
-Manager.load

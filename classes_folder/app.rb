@@ -3,6 +3,7 @@ require_relative '../modules/input_module'
 require_relative '../modules/commands_module'
 require_relative '../modules/list_module'
 require_relative '../modules/menu_module'
+require_relative '../modules/manager_module'
 require_relative 'person_folder/student_class'
 require_relative 'person_folder/teacher_class'
 require_relative 'book_folder/book_class'
@@ -23,6 +24,8 @@ class App
 
   def list_books
     Commands.clear_screen
+    @books = Manager.load('books').map { |book_data| Book.new(book_data['Title'], book_data['Author']) }
+
     if @books.empty?
       puts "There're no books yet. [Press ENTER to continue]"
       gets.chomp
