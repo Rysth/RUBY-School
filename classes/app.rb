@@ -1,14 +1,13 @@
 require 'json'
 require 'date'
-require_relative '../modules/manager_module'
-require_relative '../modules/input_module'
-require_relative '../modules/commands_module'
+require_relative 'book/book_class'
+require_relative 'person/student_class'
+require_relative 'person/teacher_class'
 require_relative '../modules/list_module'
 require_relative '../modules/menu_module'
+require_relative '../modules/input_module'
 require_relative '../modules/manager_module'
-require_relative 'person_folder/student_class'
-require_relative 'person_folder/teacher_class'
-require_relative 'book_folder/book_class'
+require_relative '../modules/commands_module'
 require_relative '../associations/rental_class'
 
 class App
@@ -21,30 +20,8 @@ class App
   end
 
   def run
-    charge_data
+    Manager.charge_data(self)
     Menu.main(self)
-  end
-
-  def charge_data
-    @books = Manager.load('books').map { |book_data| Book.new(book_data['ID'], book_data['Title'], book_data['Author']) }
-   
-    @people = Manager.load('people').map do |people_data|
-      if people_data['Type'] == 'Student'
-        Student.new(people_data['ID'], people_data['Age'], people_data['Classroom'], people_data['Name'],
-                    people_data['Parent_Permission'])
-      else
-        Teacher.new(people_data['ID'], people_data['Age'], people_data['Specialization'], people_data['Name'], people_data['Parent_Permission'])
-      end
-    end
-
-    if !@books.empty? && !@people.empty?
-      @rentals = Manager.load('rentals').map do |rental_data|
-        Rental.new(rental_data['Date'], 
-        @books.find {|book| book.id == rental_data['Book']['id']},
-        @people.find {|person| person.id == rental_data['Person']['id']}
-      )
-      end
-    end
   end
 
   def list_books
@@ -160,8 +137,6 @@ class App
 
   def list_rentals_by_person
     Commands.clear_screen
-
-
 
     if @rentals.empty?
       puts "There're no rentals yet. [Press ENTER to continue]"

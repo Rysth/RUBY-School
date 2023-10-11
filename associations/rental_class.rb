@@ -4,8 +4,8 @@ class Rental
 
   def initialize(date, book = nil, person = nil)
     @date = date
-    @book = book == nil ? nil : book
-    @person = person == nil ? nil : person
+    @book = book.nil? ? nil : book
+    @person = person.nil? ? nil : person
   end
 
   def add_book(book)
@@ -22,7 +22,7 @@ class Rental
     person.add_rental(self)
   end
 
-  def to_json
+  def to_json(*_args)
     { Date: @date, Person: {
       id: @person.id,
       name: @person.name

@@ -7,7 +7,7 @@ class Person < Nameable
 
   def initialize(id, age, name = 'Unknown', parent_permission: true)
     super()
-    @id = id == nil ? SecureRandom.hex(2) : id
+    @id = id.nil? ? SecureRandom.hex(2) : id
     @name = name
     @age = age
     @parent_permission = parent_permission
@@ -28,7 +28,7 @@ class Person < Nameable
     rental.assign_person(self)
   end
 
-  def to_json
+  def to_json(*_args)
     { ID: @id, Type: self.class, Name: @name, Age: @age }
   end
 

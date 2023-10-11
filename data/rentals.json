@@ -2,45 +2,12 @@
   {
     "Date": "2023-10-11",
     "Person": {
-      "id": "a877",
-      "name": "John Palacios"
-    },
-    "Book": {
-      "id": "66dc",
-      "title": "Reactjs"
-    }
-  },
-  {
-    "Date": "2023-10-11",
-    "Person": {
-      "id": "1e50",
-      "name": "Jean"
-    },
-    "Book": {
-      "id": "66dc",
-      "title": "Reactjs"
-    }
-  },
-  {
-    "Date": "2023-10-11",
-    "Person": {
-      "id": "205d",
+      "id": "0c31",
       "name": "Hayni Oltyan"
     },
     "Book": {
-      "id": "66dc",
-      "title": "Reactjs"
-    }
-  },
-  {
-    "Date": "2023-10-11",
-    "Person": {
-      "id": "b964",
-      "name": "Hajnalka"
-    },
-    "Book": {
-      "id": "3e44",
-      "title": "Book"
+      "id": "2fa2",
+      "title": "Ruby on rails"
     }
   }
 ]

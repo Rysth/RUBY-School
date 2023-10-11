@@ -1,14 +1,6 @@
 [
   {
-    "ID": "a877",
-    "Type": "Student",
-    "Name": "John Palacios",
-    "Age": 23,
-    "Classroom": "Green",
-    "Parent_Permission": false
-  },
-  {
-    "ID": "205d",
+    "ID": "0c31",
     "Type": "Teacher",
     "Name": "Hayni Oltyan",
     "Age": 31,
@@ -16,35 +8,11 @@
     "Parent_Permission": true
   },
   {
-    "ID": "9b7b",
+    "ID": "e8c6",
     "Type": "Student",
-    "Name": "Tess",
-    "Age": 12,
+    "Name": "John Palacios",
+    "Age": 23,
     "Classroom": "Green",
     "Parent_Permission": false
-  },
-  {
-    "ID": "f985",
-    "Type": "Student",
-    "Name": "Ruby",
-    "Age": 50,
-    "Classroom": "Green",
-    "Parent_Permission": false
-  },
-  {
-    "ID": "1e50",
-    "Type": "Teacher",
-    "Name": "Jean",
-    "Age": 30,
-    "Specialization": "Doctor",
-    "Parent_Permission": true
-  },
-  {
-    "ID": "b964",
-    "Type": "Teacher",
-    "Name": "Hajnalka",
-    "Age": 26,
-    "Specialization": "Math",
-    "Parent_Permission": true
   }
 ]

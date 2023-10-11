@@ -9,7 +9,7 @@ module List
   end
 
   def self.display_person_info(person, idx)
-    info = if person.class == Student
+    info = if person.instance_of?(Student)
              "#{idx + 1}) ID: #{person.id}, " \
                "Type: #{person.class}, " \
                "Name: #{person.name}, " \

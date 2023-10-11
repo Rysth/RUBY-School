@@ -17,7 +17,7 @@ class Student < Person
     classroom.add_student(self)
   end
 
-  def to_json
-    { ID: @id, Type: self.class, Name: @name, Age: @age, Classroom: @classroom, Parent_Permission: @parent_permission}
+  def to_json(*_args)
+    { ID: @id, Type: self.class, Name: @name, Age: @age, Classroom: @classroom, Parent_Permission: @parent_permission }
   end
 end

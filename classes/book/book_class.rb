@@ -5,7 +5,7 @@ class Book
   attr_reader :id
 
   def initialize(id = nil, title, author)
-    @id = id == nil ? SecureRandom.hex(2) : id
+    @id = id.nil? ? SecureRandom.hex(2) : id
     @title = title
     @author = author
     @rentals = []
@@ -16,7 +16,7 @@ class Book
     rental.add_book(self)
   end
 
-  def to_json
+  def to_json(*_args)
     { ID: @id, Title: @title, Author: @author }
   end
 end
