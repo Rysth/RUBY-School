@@ -2,10 +2,10 @@ class Rental
   attr_accessor :date
   attr_reader :person, :book
 
-  def initialize(date)
+  def initialize(date, book = nil, person = nil)
     @date = date
-    @book = nil
-    @person = nil
+    @book = book == nil ? nil : book
+    @person = person == nil ? nil : person
   end
 
   def add_book(book)
@@ -23,6 +23,12 @@ class Rental
   end
 
   def to_json
-    {Person_ID: @person.id, Person_Name: @person.name, Book: @book.title, Date: @date }
+    { Date: @date, Person: {
+      id: @person.id,
+      name: @person.name
+    }, Book: {
+      id: @book.id,
+      title: @book.title
+    } }
   end
 end

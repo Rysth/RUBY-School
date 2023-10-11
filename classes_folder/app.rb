@@ -157,6 +157,14 @@ class App
 
   def list_rentals_by_person
     Commands.clear_screen
+
+    @rentals = Manager.load('rentals').map do |rental_data|
+        Rental.new(rental_data['Date'], 
+        @books.find {|book| book.id == rental_data['Book']['id']},
+        @people.find {|person| person.id == rental_data['Person']['id']}
+      )
+    end
+
     if @rentals.empty?
       puts "There're no rentals yet. [Press ENTER to continue]"
       gets.chomp
@@ -167,7 +175,7 @@ class App
         print 'Please, type the ID of the person: '
         person_id = gets.chomp
       end
-      List.display_rentals_for_person(person_id, self)
+      List.display_rentals_for_person(person_id, @rentals, @books)
     end
   end
 end

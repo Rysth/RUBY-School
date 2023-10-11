@@ -1,8 +1,24 @@
 [
   {
-    "Person_ID": "205d",
-    "Person_Name": "Hayni Oltyan",
-    "Book": "Ruby",
-    "Date": "2023-10-11"
+    "Date": "2023-10-11",
+    "Person": {
+      "id": "a877",
+      "name": "John Palacios"
+    },
+    "Book": {
+      "id": "06fe",
+      "title": "Ruby"
+    }
+  },
+  {
+    "Date": "2023-10-11",
+    "Person": {
+      "id": "a877",
+      "name": "John Palacios"
+    },
+    "Book": {
+      "id": "66dc",
+      "title": "Reactjs"
+    }
   }
 ]
