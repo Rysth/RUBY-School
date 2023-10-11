@@ -1,12 +1,18 @@
 require_relative 'person_class'
 
 class Teacher < Person
-  def initialize(age, specialization, name, parent_permission)
-    super(age, name, parent_permission: parent_permission)
+  attr_accessor :specialization
+
+  def initialize(id = nil, age, specialization, name, parent_permission)
+    super(id, age, name, parent_permission: parent_permission)
     @specialization = specialization
   end
 
   def can_use_services?
     true
+  end
+
+  def to_json
+    { ID: @id, Type: self.class, Name: @name, Age: @age, Specialization: @specialization }
   end
 end

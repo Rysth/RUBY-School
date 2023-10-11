@@ -5,9 +5,9 @@ class Person < Nameable
   attr_accessor :name, :age, :parent_permission
   attr_reader :id, :rentals
 
-  def initialize(age, name = 'Unknown', parent_permission: true)
+  def initialize(id, age, name = 'Unknown', parent_permission: true)
     super()
-    @id = SecureRandom.hex(2)
+    @id = id == nil ? SecureRandom.hex(2) : id
     @name = name
     @age = age
     @parent_permission = parent_permission
@@ -26,6 +26,10 @@ class Person < Nameable
   def add_rental(rental)
     @rentals << rental
     rental.assign_person(self)
+  end
+
+  def to_json
+    { ID: @id, Type: self.class, Name: @name, Age: @age }
   end
 
   private

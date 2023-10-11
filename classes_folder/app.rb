@@ -5,6 +5,7 @@ require_relative '../modules/input_module'
 require_relative '../modules/commands_module'
 require_relative '../modules/list_module'
 require_relative '../modules/menu_module'
+require_relative '../modules/manager_module'
 require_relative 'person_folder/student_class'
 require_relative 'person_folder/teacher_class'
 require_relative 'book_folder/book_class'
@@ -20,12 +21,14 @@ class App
   end
 
   def run
-    Manager.load_app(self)
+    Manager.load  (self)
     Menu.main(self)
   end
 
   def list_books
     Commands.clear_screen
+    @books = Manager.load('books').map { |book_data| Book.new(book_data['Title'], book_data['Author']) }
+
     if @books.empty?
       puts "There're no books yet. [Press ENTER to continue]"
       gets.chomp
@@ -36,6 +39,16 @@ class App
 
   def list_people
     Commands.clear_screen
+
+    @people = Manager.load('people').map do |people_data|
+      if people_data['Type'] == 'Student'
+        Student.new(people_data['ID'], people_data['Age'], people_data['Classroom'], people_data['Name'],
+                    people_data['Parent_Permission'])
+      else
+        Teacher.new(people_data['ID'], people_data['Age'], people_data['Specialization'], people_data['Name'], '')
+      end
+    end
+
     if @people.empty?
       puts "There're no people yet. [Press ENTER to continue]"
       gets.chomp
@@ -49,15 +62,31 @@ class App
     age = Input.input_age
     name = Input.input_name
 
+    new_person = ''
     case person_type
     when 1
       parent_acceptance = Input.input_parent_acceptance
       permission = parent_acceptance == 'Y'
-      @people << Student.new(age, '', name, permission)
+      new_person = Student.new(age, 'Green', name, permission)
     when 2
       specialization = Input.input_specialization
-      @people << Teacher.new(age, specialization, name, true)
+      new_person = Teacher.new(age, specialization, name, true)
     end
+
+    @people = Manager.load('people').map do |people_data|
+      if people_data['Type'] == 'Student'
+        Student.new(people_data['ID'], people_data['Age'], people_data['Classroom'], people_data['Name'],
+                    people_data['Parent_Permission'])
+      else
+        Teacher.new(people_data['ID'], people_data['Age'], people_data['Specialization'], people_data['Name'], '')
+      end
+    end
+
+    people_file = File.new('./data/people.json', 'w+') 
+    people_json_array = @people.map { |person| person.to_json }
+    people_json_array.push(new_person.to_json)
+    people_file.syswrite(JSON.pretty_generate(people_json_array))
+    people_file.close
 
     Commands.clear_screen
     puts 'Person created successfully! [Press ENTER to continue]'

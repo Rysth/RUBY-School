@@ -1,0 +1,24 @@
+[
+  {
+    "ID": "7bce",
+    "Type": "Student",
+    "Name": "John Palacios",
+    "Age": 20,
+    "Classroom": "Green",
+    "Parent_Permission": false
+  },
+  {
+    "ID": "099b",
+    "Type": "Teacher",
+    "Name": "Doctor",
+    "Age": "8053",
+    "Specialization": 30
+  },
+  {
+    "ID": "fa2b",
+    "Type": "Teacher",
+    "Name": "Hayni Oltyan",
+    "Age": 25,
+    "Specialization": "Fullstack Developer"
+  }
+]
