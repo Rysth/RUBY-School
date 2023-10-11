@@ -8,7 +8,6 @@ module Manager
     if File.exist?(file_path)
       loaded_data = JSON.parse(File.read(file_path))
     else
-      puts "The file #{file_path} doesn't exist."
       loaded_data = []
     end
     loaded_data

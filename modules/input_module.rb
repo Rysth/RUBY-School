@@ -47,7 +47,7 @@ module Input
     until !specialization.empty? && specialization.match(LETTER_REGEX)
       Commands.clear_screen
       print "What's your specialization?: "
-      specialization = gets.chomp.capitalize.strip
+      specialization = gets.chomp.strip
     end
     specialization
   end

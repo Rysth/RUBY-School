@@ -45,7 +45,7 @@ class App
         Student.new(people_data['ID'], people_data['Age'], people_data['Classroom'], people_data['Name'],
                     people_data['Parent_Permission'])
       else
-        Teacher.new(people_data['ID'], people_data['Age'], people_data['Specialization'], people_data['Name'], '')
+        Teacher.new(people_data['ID'], people_data['Age'], people_data['Specialization'], people_data['Name'], people_data['Parent_Permission'])
       end
     end
 
@@ -78,7 +78,7 @@ class App
         Student.new(people_data['ID'], people_data['Age'], people_data['Classroom'], people_data['Name'],
                     people_data['Parent_Permission'])
       else
-        Teacher.new(people_data['ID'], people_data['Age'], people_data['Specialization'], people_data['Name'], '')
+        Teacher.new(people_data['ID'], people_data['Age'], people_data['Specialization'], people_data['Name'], true)
       end
     end
 

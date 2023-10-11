@@ -13,6 +13,6 @@ class Teacher < Person
   end
 
   def to_json
-    { ID: @id, Type: self.class, Name: @name, Age: @age, Specialization: @specialization }
+    { ID: @id, Type: self.class, Name: @name, Age: @age, Specialization: @specialization, Parent_Permission: @parent_permission }
   end
 end

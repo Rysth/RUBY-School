@@ -1,24 +1,18 @@
 [
   {
-    "ID": "7bce",
+    "ID": "a877",
     "Type": "Student",
     "Name": "John Palacios",
-    "Age": 20,
+    "Age": 23,
     "Classroom": "Green",
     "Parent_Permission": false
   },
   {
-    "ID": "099b",
-    "Type": "Teacher",
-    "Name": "Doctor",
-    "Age": "8053",
-    "Specialization": 30
-  },
-  {
-    "ID": "fa2b",
+    "ID": "205d",
     "Type": "Teacher",
     "Name": "Hayni Oltyan",
     "Age": 25,
-    "Specialization": "Fullstack Developer"
+    "Specialization": "Programmer",
+    "Parent_Permission": true
   }
 ]

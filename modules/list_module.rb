@@ -21,6 +21,7 @@ module List
                "Name: #{person.name}, " \
                "Age: #{person.age}, " \
                "Specialization: #{person.specialization}, " \
+               "Parent Permission: #{person.parent_permission}"
            end
     puts info
   end
