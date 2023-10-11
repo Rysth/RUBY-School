@@ -36,6 +36,17 @@ class App
 
   def list_people
     Commands.clear_screen
+
+    @people = Manager.load('people').map do |people_data|
+      if people_data['Type'] == 'Student'
+        Student.new(people_data['Age'], people_data['Classroom'], people_data['Name'],
+                    people_data['Parent Permission'])
+      else
+        Teacher.new(people_data['Age'], people_data['Specialization'], people_data['Name'],
+                    people_data['Parent Permission'])
+      end
+    end
+
     if @people.empty?
       puts "There're no people yet. [Press ENTER to continue]"
       gets.chomp
