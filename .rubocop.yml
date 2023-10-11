@@ -19,7 +19,9 @@ Metrics/BlockLength:
   AllowedMethods: ['describe']
   Max: 30
 Metrics/CyclomaticComplexity:
-  AllowedMethods: ['main']
+  AllowedMethods: ['charge_data', 'main']
+Metrics/PerceivedComplexity:
+  AllowedMethods: ['charge_data']
 
 Style/Documentation:
   Enabled: false

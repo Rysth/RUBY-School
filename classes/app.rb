@@ -1,15 +1,17 @@
+require 'json'
 require 'date'
-require_relative '../modules/input_module'
-require_relative '../modules/commands_module'
+require_relative 'book/book_class'
+require_relative 'person/student_class'
+require_relative 'person/teacher_class'
 require_relative '../modules/list_module'
 require_relative '../modules/menu_module'
-require_relative 'person_folder/student_class'
-require_relative 'person_folder/teacher_class'
-require_relative 'book_folder/book_class'
+require_relative '../modules/input_module'
+require_relative '../modules/manager_module'
+require_relative '../modules/commands_module'
 require_relative '../associations/rental_class'
 
 class App
-  attr_reader :books, :people, :rentals
+  attr_accessor :books, :people, :rentals
 
   def initialize
     @books = []
@@ -18,11 +20,13 @@ class App
   end
 
   def run
+    Manager.charge_data(self)
     Menu.main(self)
   end
 
   def list_books
     Commands.clear_screen
+
     if @books.empty?
       puts "There're no books yet. [Press ENTER to continue]"
       gets.chomp
@@ -33,6 +37,7 @@ class App
 
   def list_people
     Commands.clear_screen
+
     if @people.empty?
       puts "There're no people yet. [Press ENTER to continue]"
       gets.chomp
@@ -46,15 +51,20 @@ class App
     age = Input.input_age
     name = Input.input_name
 
+    new_person = ''
     case person_type
     when 1
       parent_acceptance = Input.input_parent_acceptance
       permission = parent_acceptance == 'Y'
-      @people << Student.new(age, '', name, permission)
+      new_person = Student.new(nil, age, 'Green', name, permission)
     when 2
       specialization = Input.input_specialization
-      @people << Teacher.new(age, specialization, name, true)
+      new_person = Teacher.new(nil, age, specialization, name, true)
     end
+
+    @people << new_person
+
+    Manager.write_file('people.json', @people)
 
     Commands.clear_screen
     puts 'Person created successfully! [Press ENTER to continue]'
@@ -65,7 +75,10 @@ class App
     title = Input.input_valid_string('Title')
     author = Input.input_valid_string('Author')
 
-    @books << Book.new(title, author)
+    new_book = Book.new(nil, title, author)
+    @books << new_book
+
+    Manager.write_file('books.json', @books)
 
     Commands.clear_screen
     puts 'Book created successfully! [Press ENTER to continue]'
@@ -84,6 +97,8 @@ class App
     rental.add_book(book_selected)
     rental.assign_person(person_selected)
     @rentals << rental
+
+    Manager.write_file('rentals.json', @rentals)
 
     gets.chomp
   end
@@ -122,6 +137,7 @@ class App
 
   def list_rentals_by_person
     Commands.clear_screen
+
     if @rentals.empty?
       puts "There're no rentals yet. [Press ENTER to continue]"
       gets.chomp
@@ -132,7 +148,7 @@ class App
         print 'Please, type the ID of the person: '
         person_id = gets.chomp
       end
-      List.display_rentals_for_person(person_id, self)
+      List.display_rentals_for_person(person_id, @rentals, @books)
     end
   end
 end

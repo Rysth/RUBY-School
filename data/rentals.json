@@ -1,0 +1,13 @@
+[
+  {
+    "Date": "2023-10-11",
+    "Person": {
+      "id": "0c31",
+      "name": "Hayni Oltyan"
+    },
+    "Book": {
+      "id": "2fa2",
+      "title": "Ruby on rails"
+    }
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "ID": "0c31",
+    "Type": "Teacher",
+    "Name": "Hayni Oltyan",
+    "Age": 31,
+    "Specialization": "Programmer",
+    "Parent_Permission": true
+  },
+  {
+    "ID": "e8c6",
+    "Type": "Student",
+    "Name": "John Palacios",
+    "Age": 23,
+    "Classroom": "Green",
+    "Parent_Permission": false
+  },
+  {
+    "ID": "4af6",
+    "Type": "Teacher",
+    "Name": "Microverse",
+    "Age": 100,
+    "Specialization": "Bootcamp",
+    "Parent_Permission": true
+  }
+]

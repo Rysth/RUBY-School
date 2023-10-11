@@ -9,11 +9,20 @@ module List
   end
 
   def self.display_person_info(person, idx)
-    info = "#{idx + 1}) ID: #{person.id}, " \
-           "Type: #{person.class}, " \
-           "Name: #{person.name}, " \
-           "Age: #{person.age}, " \
-           "Parent Permission: #{person.parent_permission}"
+    info = if person.instance_of?(Student)
+             "#{idx + 1}) ID: #{person.id}, " \
+               "Type: #{person.class}, " \
+               "Name: #{person.name}, " \
+               "Age: #{person.age}, " \
+               "Parent Permission: #{person.parent_permission}"
+           else
+             "#{idx + 1}) ID: #{person.id}, " \
+               "Type: #{person.class}, " \
+               "Name: #{person.name}, " \
+               "Age: #{person.age}, " \
+               "Specialization: #{person.specialization}, " \
+               "Parent Permission: #{person.parent_permission}"
+           end
     puts info
   end
 
@@ -21,20 +30,20 @@ module List
     puts 'Books:'
     puts '----------------------------------'
     collection.each_with_index do |book, idx|
-      puts "#{idx + 1}) Title: #{book.title}, Author: #{book.author}"
+      puts "#{idx + 1}) ID: #{book.id}, Title: #{book.title}, Author: #{book.author}"
     end
     puts '----------------------------------'
   end
 
-  def self.display_rentals_for_person(id, app)
+  def self.display_rentals_for_person(id, rentals, books)
     Commands.clear_screen
     rentals_found = false
 
     puts '----------------------------------'
-    app.rentals.each do |rental|
+    rentals.each do |rental|
       next unless rental.person.id == id
 
-      app.books.each do |book|
+      books.each do |book|
         next if rental.book.id != book.id
 
         puts "Person: #{rental.person.name} --> Book: #{book.title}"

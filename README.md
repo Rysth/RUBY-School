@@ -72,11 +72,17 @@ Then, you will change everything you want!
 
 Install this project with:
 
-- Use the `build install` command within your folder using WSL.
+- 1. Install ruby following this [documentation](https://www.ruby-lang.org/en/documentation/installation/)
+- 2. Use the `build install` command within your folder using WSL to install all the dependencies automatically.
 
 ### Usage
 
 To run the project, execute the following steps:
+
+- 1. Open your terminal (WSL/Ubuntu Terminal)
+- 2. Check if you have ruby and rubocop installed (if not follow the previous chapter).
+- 3. Type 'ruby main.rb' in the root folder to execute the application.
+- 4. Finish
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -96,7 +102,9 @@ To run the project, execute the following steps:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **⏲️**
+- [ ] **Create an attractive user interface by connecting the application with React**
+- [ ] **Store the data within a PostgreSQL Database**
+- [ ] **Develop a Classroom item menu to create new classroom objects**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
