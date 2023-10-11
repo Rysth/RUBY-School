@@ -4,7 +4,7 @@ class Book
   attr_accessor :title, :author
   attr_reader :id
 
-  def initialize(title, author)
+  def initialize(id = nil, title, author)
     @id = SecureRandom.hex(2)
     @title = title
     @author = author
@@ -17,6 +17,6 @@ class Book
   end
 
   def to_json
-    { title: @title, author: @author }
+    { ID: @id, Title: @title, Author: @author }
   end
 end

@@ -30,7 +30,7 @@ module List
     puts 'Books:'
     puts '----------------------------------'
     collection.each_with_index do |book, idx|
-      puts "#{idx + 1}) Title: #{book.title}, Author: #{book.author}"
+      puts "#{idx + 1}) ID: #{book.id}, Title: #{book.title}, Author: #{book.author}"
     end
     puts '----------------------------------'
   end

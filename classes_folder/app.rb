@@ -27,7 +27,7 @@ class App
 
   def list_books
     Commands.clear_screen
-    @books = Manager.load('books').map { |book_data| Book.new(book_data['Title'], book_data['Author']) }
+    @books = Manager.load('books').map { |book_data| Book.new(book_data['ID'], book_data['Title'], book_data['Author']) }
 
     if @books.empty?
       puts "There're no books yet. [Press ENTER to continue]"

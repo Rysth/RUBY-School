@@ -11,8 +11,16 @@
     "ID": "205d",
     "Type": "Teacher",
     "Name": "Hayni Oltyan",
-    "Age": 25,
+    "Age": 31,
     "Specialization": "Programmer",
     "Parent_Permission": true
+  },
+  {
+    "ID": "9b7b",
+    "Type": "Student",
+    "Name": "Tess",
+    "Age": 12,
+    "Classroom": "Green",
+    "Parent_Permission": false
   }
 ]
