@@ -31,5 +31,16 @@
       "id": "66dc",
       "title": "Reactjs"
     }
+  },
+  {
+    "Date": "2023-10-11",
+    "Person": {
+      "id": "b964",
+      "name": "Hajnalka"
+    },
+    "Book": {
+      "id": "3e44",
+      "title": "Book"
+    }
   }
 ]

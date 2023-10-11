@@ -101,10 +101,7 @@ class App
     new_book = Book.new(title, author)
     @books << new_book
 
-    books_file = File.new('./data/books.json', 'w+') 
-    book_json_array = @books.map { |book| book.to_json }
-    books_file.syswrite(JSON.pretty_generate(book_json_array))
-    books_file.close
+    Manager.write_file('books.json', @books)
 
     Commands.clear_screen
     puts 'Book created successfully! [Press ENTER to continue]'
@@ -124,10 +121,7 @@ class App
     rental.assign_person(person_selected)
     @rentals << rental
 
-    rental_file = File.new('./data/rentals.json', 'w+') 
-    rental_json_array = @rentals.map { |rental| rental.to_json }
-    rental_file.syswrite(JSON.pretty_generate(rental_json_array))
-    rental_file.close
+    Manager.write_file('rentals.json', @rentals)
 
     gets.chomp
   end

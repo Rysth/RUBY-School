@@ -38,5 +38,13 @@
     "Age": 30,
     "Specialization": "Doctor",
     "Parent_Permission": true
+  },
+  {
+    "ID": "b964",
+    "Type": "Teacher",
+    "Name": "Hajnalka",
+    "Age": 26,
+    "Specialization": "Math",
+    "Parent_Permission": true
   }
 ]
