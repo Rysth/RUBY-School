@@ -22,5 +22,13 @@
     "Age": 12,
     "Classroom": "Green",
     "Parent_Permission": false
+  },
+  {
+    "ID": "f985",
+    "Type": "Student",
+    "Name": "Ruby",
+    "Age": 50,
+    "Classroom": "Green",
+    "Parent_Permission": false
   }
 ]

@@ -21,4 +21,8 @@ class Rental
     @person = person
     person.add_rental(self)
   end
+
+  def to_json
+    {Person_ID: @person.id, Person_Name: @person.name, Book: @book.title, Date: @date }
+  end
 end

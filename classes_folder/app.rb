@@ -73,18 +73,10 @@ class App
       new_person = Teacher.new(age, specialization, name, true)
     end
 
-    @people = Manager.load('people').map do |people_data|
-      if people_data['Type'] == 'Student'
-        Student.new(people_data['ID'], people_data['Age'], people_data['Classroom'], people_data['Name'],
-                    people_data['Parent_Permission'])
-      else
-        Teacher.new(people_data['ID'], people_data['Age'], people_data['Specialization'], people_data['Name'], true)
-      end
-    end
+    @people << new_person
 
     people_file = File.new('./data/people.json', 'w+') 
     people_json_array = @people.map { |person| person.to_json }
-    people_json_array.push(new_person.to_json)
     people_file.syswrite(JSON.pretty_generate(people_json_array))
     people_file.close
 
@@ -100,10 +92,10 @@ class App
     new_book = Book.new(title, author)
     @books << new_book
 
-    books_data = File.new('./data/books.json', 'w+') 
+    books_file = File.new('./data/books.json', 'w+') 
     book_json_array = @books.map { |book| book.to_json }
-    books_data.syswrite(JSON.pretty_generate(book_json_array))
-    books_data.close
+    books_file.syswrite(JSON.pretty_generate(book_json_array))
+    books_file.close
 
     Commands.clear_screen
     puts 'Book created successfully! [Press ENTER to continue]'
@@ -122,6 +114,11 @@ class App
     rental.add_book(book_selected)
     rental.assign_person(person_selected)
     @rentals << rental
+
+    rental_file = File.new('./data/rentals.json', 'w+') 
+    rental_json_array = @rentals.map { |rental| rental.to_json }
+    rental_file.syswrite(JSON.pretty_generate(rental_json_array))
+    rental_file.close
 
     gets.chomp
   end

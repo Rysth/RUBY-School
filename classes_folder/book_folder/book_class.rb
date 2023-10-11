@@ -5,7 +5,7 @@ class Book
   attr_reader :id
 
   def initialize(id = nil, title, author)
-    @id = SecureRandom.hex(2)
+    @id = id == nil ? SecureRandom.hex(2) : id
     @title = title
     @author = author
     @rentals = []
