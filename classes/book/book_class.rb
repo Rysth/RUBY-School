@@ -2,7 +2,7 @@ require 'securerandom'
 
 class Book
   attr_accessor :title, :author
-  attr_reader :id
+  attr_reader :id, :rentals
 
   def initialize(id, title, author)
     @id = id.nil? ? SecureRandom.hex(2) : id
