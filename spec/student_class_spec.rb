@@ -24,6 +24,7 @@ describe Student do
         student = Student.new(nil, 35, 'PreviousRoom', 'Random', parent_permission: true)
         student.add_classroom(classroom)
         expect(student.classroom).not_to be_nil
+        expect(classroom.students.find { |item| item.id == student.id }).not_to be_nil
       end
     end
   end
