@@ -14,7 +14,6 @@ RSpec.describe Classroom do
 
   describe '#add_student' do
     it 'adds a student to the classroom' do
-      expect(student).to receive(:add_classroom).with(classroom)
       classroom.add_student(student)
       expect(classroom.students).to include(student)
     end
