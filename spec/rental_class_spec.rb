@@ -48,10 +48,10 @@ describe Rental do
         rental = Rental.new(date, book, person)
         json_result = rental.to_json
         expect(json_result).to eq({
-          Date: date,
-          Person: { id: person.id, name: person.name },
-          Book: { id: book.id, title: book.title }
-        })
+                                    Date: date,
+                                    Person: { id: person.id, name: person.name },
+                                    Book: { id: book.id, title: book.title }
+                                  })
       end
     end
   end
@@ -84,7 +84,7 @@ describe Rental do
         book = Book.new('B001', 'Test Book', 'John')
         person = Person.new('0ACB', 20, 'John', parent_permission: true)
         rental = Rental.new(date, book, person)
-        another_person =Person.new(nil, 20, 'Palacios', parent_permission: true)
+        another_person = Person.new(nil, 20, 'Palacios', parent_permission: true)
         rental.assign_person(another_person)
         expect(rental.person).not_to eql person
         expect(person.rentals).not_to include(another_person)

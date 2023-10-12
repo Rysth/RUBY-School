@@ -1,19 +1,18 @@
 require_relative '../decorators/capitalize_class'
 
-describe CapitalizeDecorator do
-  # Create a dummy class for testing
-  class DummyNameable
-    attr_reader :name
+class DummyNameable
+  attr_reader :name
 
-    def initialize(name)
-      @name = name
-    end
-
-    def correct_name
-      name
-    end
+  def initialize(name)
+    @name = name
   end
 
+  def correct_name
+    name
+  end
+end
+
+describe CapitalizeDecorator do
   context 'when decorating an object' do
     it 'capitalizes the name using correct_name method' do
       dummy_nameable = DummyNameable.new('john')

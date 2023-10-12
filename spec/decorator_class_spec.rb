@@ -1,20 +1,19 @@
 require_relative '../decorators/decorator_class'
 require_relative '../classes/nameable_class'
 
-describe Decorator do
-  # Create a dummy class for testing
-  class DummyNameable
-    attr_reader :name
+class DummyNameable
+  attr_reader :name
 
-    def initialize(name)
-      @name = name
-    end
-
-    def correct_name
-      name
-    end
+  def initialize(name)
+    @name = name
   end
 
+  def correct_name
+    name
+  end
+end
+
+describe Decorator do
   context 'when decorating an object' do
     it 'delegates the correct_name method to the decorated object' do
       dummy_nameable = DummyNameable.new('John Doe')

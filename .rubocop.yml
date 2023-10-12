@@ -17,7 +17,7 @@ Metrics/ClassLength:
   Max: 250
 Metrics/BlockLength:
   AllowedMethods: ['describe']
-  Max: 30
+  Max: 50
 Metrics/CyclomaticComplexity:
   AllowedMethods: ['charge_data', 'main']
 Metrics/PerceivedComplexity:
