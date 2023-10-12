@@ -22,7 +22,8 @@ describe Teacher do
 
   describe '#to_json' do
     it 'returns a JSON representation of the teacher' do
-      expected_json = { ID: teacher.id, Type: teacher.class, Age: 31, Specialization: 'History', Name: 'Hajnalka Oltyan', Parent_Permission: true }
+      expected_json = { ID: teacher.id, Type: teacher.class, Age: 31, Specialization: 'History',
+                        Name: 'Hajnalka Oltyan', Parent_Permission: true }
       expect(teacher.to_json).to eq(expected_json)
     end
   end
